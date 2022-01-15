@@ -1,4 +1,4 @@
-# rolland_gamos_cs
+# Roland_gamos_cs
 ```python
 >>> import rolland_gamos_cs as roga
 >>> roga.players_played_together("nbk", "shox")
