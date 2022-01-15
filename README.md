@@ -1,4 +1,5 @@
 # rolland_gamos_cs
+```python
 >>> import rolland_gamos_cs as roga
 >>> roga.players_played_together("nbk", "shox")
 They not played together in 00nation
@@ -9,3 +10,4 @@ They played together in faze (Sep 2019-May 2020) ['olofmeister', 'niko', 'rain',
 They not played together in mibr
 They not played together in sk
 They not played together in luminosity
+```
