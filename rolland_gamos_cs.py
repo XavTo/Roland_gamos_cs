@@ -26,7 +26,7 @@ def _find_lineup(team_name, team_id, player_1, player_2):
         lineup = lineup_container.find_all("div", {"class": "col teammate"})
         for teammate in lineup:
             list_teammate_lineup.append(teammate.find("div", {"class": "text-ellipsis"}).text.lower())
-        if player_1 and player_2 in list_teammate_lineup:
+        if player_1 in list_teammate_lineup and player_2 in list_teammate_lineup:
             print("They played together in " + team_name + " (" + lineup_container.find_all("span", {"data-time-format": "MMM yyyy"})[0].text
                     + "-" + lineup_container.find_all("span", {"data-time-format": "MMM yyyy"})[1].text + ") " + str(list_teammate_lineup))
             played_together = True
