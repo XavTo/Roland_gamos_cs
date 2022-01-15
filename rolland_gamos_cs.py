@@ -4,6 +4,12 @@ import requests
 from bs4 import BeautifulSoup
 
 
+def find_id_from_name(player_name, time_sleep = 0.3):
+    page = get_parsed_page(f"https://www.hltv.org/search?query={player_name}")
+    time.sleep(time_sleep)
+    return page.find("table", {"class": "table"}).find('a')['href'].split("/")[2]
+
+
 def get_parsed_page(url):
     headers = {
         "referer": "https://www.hltv.org/stats",
@@ -30,7 +36,8 @@ def _find_lineup(team_name, team_id, player_1, player_2):
     return played_together
 
 
-def players_played_together(player_id, name_second_player, time_sleep = 0.3):
+def players_played_together(name_first_player, name_second_player, time_sleep = 0.3):
+    player_id = find_id_from_name(name_first_player, time_sleep)
     played_together = False
     page = get_parsed_page(f"https://www.hltv.org/player/{player_id}/a#tab-teamsBox")
     name_first_player = page.find("h1", {"class": "playerNickname"}).text
@@ -47,9 +54,3 @@ def players_played_together(player_id, name_second_player, time_sleep = 0.3):
             played_together = True
         time.sleep(time_sleep)
     return played_together
-
-
-def find_id_from_name(player_name, time_sleep = 0.3):
-    page = get_parsed_page(f"https://www.hltv.org/search?query={player_name}")
-    time.sleep(time_sleep)
-    return page.find("table", {"class": "table"}).find('a')['href'].split("/")[2]
