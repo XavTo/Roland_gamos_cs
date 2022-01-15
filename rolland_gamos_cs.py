@@ -53,19 +53,3 @@ def find_id_from_name(player_name, time_sleep = 0.3):
     page = get_parsed_page(f"https://www.hltv.org/search?query={player_name}")
     time.sleep(time_sleep)
     return page.find("table", {"class": "table"}).find('a')['href'].split("/")[2]
-
-
-if len(sys.argv) == 5:
-    if sys.argv[3] == "-s":
-        first_player_name = sys.argv[1].lower()
-        first_player_id = find_id_from_name(first_player_name, float(sys.argv[4]))
-        second_player = sys.argv[2].lower()
-        players_played_together(first_player_id, second_player, float(sys.argv[4]))
-
-
-
-if len(sys.argv) == 3:
-    first_player_name = sys.argv[1].lower()
-    first_player_id = find_id_from_name(first_player_name)
-    second_player = sys.argv[2].lower()
-    players_played_together(first_player_id, second_player)
