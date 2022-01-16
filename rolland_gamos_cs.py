@@ -45,7 +45,7 @@ def players_played_together(name_first_player, name_second_player, display = Tru
     player_id = find_id_from_name(name_first_player, time_sleep)
     played_together = False
     page = get_parsed_page(f"https://www.hltv.org/player/{player_id}/a#tab-teamsBox")
-    name_first_player = page.find("h1", {"class": "playerNickname"}).text
+    name_first_player = page.find("h1", {"class": "playerNickname"}).text.replace("-", "")
     list_team_id = [page.find("table", {"class": "table-container team-breakdown"}).find("tbody").find("tr", {"class": "team"})
                     .find("td", {"class": "team-name-cell"}).find('a')['href'].split("/")[2]]
     list_team_name = [page.find("table", {"class": "table-container team-breakdown"}).find("tbody").find("tr", {"class": "team"})
